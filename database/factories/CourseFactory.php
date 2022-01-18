@@ -16,7 +16,7 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(3, true),
+            'description' => $this->faker->paragraphs(3, true),
             'user_id' => User::all()->random()->id,
         ];
     }

@@ -33,6 +33,14 @@ class UserFactory extends Factory
         ];
     }
 
+    public function default()
+    {
+        return $this->state([
+            'name' => 'cdd',
+            'email' => 'cdd@laravel.com',
+        ]);
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      *

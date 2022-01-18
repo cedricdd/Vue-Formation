@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Database was refreshed');
         }
 
+        User::factory()->default()->create();
          User::factory(10)->create();
+
          Course::factory(15)->create()->each(function ($course) {
              Episode::factory()->count(random_int(10, 25))->for(
                  $course, 'course'
