@@ -1,0 +1,7 @@
+composer require laravel/jetstream
+
+php artisan jetstream:install inertia
+
+npm install
+npm run dev
+php artisan migrate
