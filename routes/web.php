@@ -27,6 +27,10 @@ Route::get('/', function () {
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::resource('/courses', CourseController::class)->only( 'show');
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
