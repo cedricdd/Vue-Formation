@@ -24,7 +24,7 @@
                                 </jet-nav-link>
 
                                 <jet-nav-link :href="route('courses.index')" :active="route().current('courses.index')">
-                                    Formations
+                                    Courses
                                 </jet-nav-link>
                             </div>
                         </div>

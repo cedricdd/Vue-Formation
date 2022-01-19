@@ -9,10 +9,13 @@
             <div class="text-sm text-black-500">{{ courseShow.episodes[currentKey].description }}</div>
 
             <div class="mt-6">
-                <ul v-for="(episode, index) in courseShow.episodes" v-bind:key="episode.id">
-                    <li class="mt-3">
-                        #{{ index + 1 }} - {{ episode.title }}
-                        <button class="text-gray-500 focus:text-indigo-500 focus:outline-none" @click="switchEpisode(index)">Voir l'épisode</button>
+                <ul id="list_episodes">
+                    <li v-for="(episode, index) in courseShow.episodes" v-bind:key="episode.id" class="mt-2 p-2 rounded flex justify-between items-center">
+                        <div>
+                            #{{ index + 1 }} - {{ episode.title }}
+                            <button class="text-gray-500 border-2 rounded px-1 hover:text-black focus:text-indigo-500 focus:outline-none" @click="switchEpisode(index)">Show Episode</button>
+                        </div>
+                        <progress-button :episode-id="episode.id" :watched-episodes="watched" />
                     </li>
                 </ul>
             </div>
@@ -22,13 +25,15 @@
 
 <script>
 import AppLayout from "./../../Layouts/AppLayout";
+import ProgressButton from "./ProgressButton";
 
 export default {
     components: {
-        AppLayout
+        AppLayout,
+        ProgressButton,
     },
 
-    props: ['course'],
+    props: ['course', 'watched'],
 
     data() {
         return {

@@ -17,8 +17,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
         require('postcss-import'),
         require('tailwindcss'),
     ])
-    .webpackConfig(require('./webpack.config'))
-    .browserSync('http://localhost/');
+    .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {
     mix.version();
