@@ -35,7 +35,12 @@ export default {
         AppLayout
     },
 
-    props: ['courses'],
+    props: {
+        courses: {
+            type: Object,
+            required: true,
+        }
+    },
 
     data() {
         return {

@@ -8,7 +8,16 @@
 
 <script>
     export default {
-        props: ['episodeId', 'watchedEpisodes'],
+        props: {
+            episodeId: {
+                type: Number,
+                required: true,
+            },
+            watchedEpisodes: {
+                type: Array,
+                required: true,
+            },
+        },
 
         data() {
           return {

@@ -25,6 +25,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::View('/shopping-list', 'ShoppingList.index')->name("shopping-list");
+
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
