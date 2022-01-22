@@ -34,7 +34,7 @@ class CourseController extends Controller
     {
         //We load the episodes
         $course->load('episodes');
-        $watched = Auth::user()->episodesWatched;
+        $watched = Auth::user()->episodesWatchedInCourse($course->id)->get();
 
         return Inertia::render('Courses/Show', compact('course', 'watched'));
     }

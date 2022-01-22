@@ -70,4 +70,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Episode::class, 'watched_episodes')->withTimestamps();
     }
+
+    public function episodesWatchedInCourse($course_id): BelongsToMany
+    {
+        return $this->belongsToMany(Episode::class, 'watched_episodes')
+            ->where('episodes.course_id', $course_id)
+            ->withTimestamps();
+    }
 }

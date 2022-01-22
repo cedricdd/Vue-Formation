@@ -8,6 +8,8 @@
             <iframe class="w-full h-screen" :src="courseShow.episodes[currentKey].video_url" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div class="mt-4 text-black-500">{{ courseShow.episodes[currentKey].description }}</div>
 
+            <progress-bar :max="courseShow.episodes.length" :current="watchedCount"></progress-bar>
+
             <div class="mt-6">
                 <ul id="list_episodes">
                     <li v-for="(episode, index) in courseShow.episodes" v-bind:key="episode.id"
@@ -20,7 +22,7 @@
                                 Show Episode
                             </button>
                         </div>
-                        <progress-button :episode-id="episode.id" :watched-episodes="watched" />
+                        <progress-button :episode-id="episode.id" :watched-episodes="watched" @clicked="progressChanged" />
                     </li>
                 </ul>
             </div>
@@ -31,10 +33,12 @@
 <script>
 import AppLayout from "./../../Layouts/AppLayout";
 import ProgressButton from "./ProgressButton";
+import ProgressBar from "./ProgressBar";
 
 export default {
     components: {
         AppLayout,
+        ProgressBar,
         ProgressButton,
     },
 
@@ -46,18 +50,19 @@ export default {
         watched: {
             type: Array,
             default: [],
-        }
+        },
     },
 
     data() {
         return {
             currentKey: 0,
-            courseShow: this.course
+            courseShow: this.course,
+            watchedCount: 0,
         }
     },
 
     methods: {
-      switchEpisode(index) {
+        switchEpisode(index) {
           this.currentKey = index;
 
           window.scrollTo({
@@ -65,7 +70,15 @@ export default {
               left: 0,
               behavior: "smooth",
           })
-      }
+        },
+        progressChanged(watched) {
+            if(watched) this.watchedCount++;
+            else this.watchedCount--;
+        }
     },
+
+    beforeMount() {
+        this.watchedCount = this.watched.length;
+    }
 }
 </script>

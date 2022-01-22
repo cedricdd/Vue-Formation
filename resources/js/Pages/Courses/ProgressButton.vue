@@ -34,6 +34,7 @@
                 .then(response => {
                     if(response.status == "200") {
                         this.isWatched ^= 1;
+                        this.$emit('clicked', this.isWatched)
                     }
                 })
                 .catch(error => console.log(error));
@@ -44,7 +45,7 @@
             }
         },
 
-        mounted() {
+        beforeMount() {
           this.isWatched = this.isWatchedEpisode();
         }
     }
