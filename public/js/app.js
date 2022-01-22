@@ -20684,6 +20684,45 @@ __webpack_require__.r(__webpack_exports__);
     return {
       coursesList: this.courses
     };
+  },
+  // Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.
+  beforeCreate: function beforeCreate() {
+    console.log('beforeCreate');
+  },
+  // Called synchronously after the instance is created. At this stage, the instance has finished processing the options
+  // which means the following have been set up: data observation, computed properties, methods, watch/event callbacks.
+  created: function created() {
+    console.log('created');
+  },
+  // Called right before the mounting begins: the render function is about to be called for the first time.
+  beforeMount: function beforeMount() {
+    console.log('beforeMount');
+  },
+  // Called after the instance has been mounted, where element, passed to app.mount is replaced by the newly created vm.$el
+  mounted: function mounted() {
+    console.log('mounted');
+    this.$nextTick(function () {// Code that will run only after the
+      // entire view has been rendered
+    });
+  },
+  // Called when data changes, before the DOM is patched.
+  beforeUpdate: function beforeUpdate() {
+    console.log('beforeUpdate');
+  },
+  // Called after a data change causes the virtual DOM to be re-rendered and patched.
+  updated: function updated() {
+    console.log('updated');
+    this.$nextTick(function () {// Code that will run only after the
+      // entire view has been re-rendered
+    });
+  },
+  // Called right before a component instance is unmounted. At this stage the instance is still fully functional.
+  beforeUnmount: function beforeUnmount() {
+    console.log('beforeUnmount');
+  },
+  // Called after a component instance has been unmounted.
+  unmounted: function unmounted() {
+    console.log('unmounted');
   }
 });
 

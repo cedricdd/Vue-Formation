@@ -26,6 +26,8 @@ Route::get('/', function () {
 });
 
 Route::View('/shopping-list', 'ShoppingList.index')->name("shopping-list");
+Route::View('/github-user', 'GithubUser.index')->name("github-user");
+Route::View('/notification', 'Notification.index')->name("notification");
 
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 
