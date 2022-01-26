@@ -26,10 +26,6 @@
                                 <jet-nav-link :href="route('courses.index')" :active="route().current('courses.index')">
                                     Courses
                                 </jet-nav-link>
-
-                                <jet-nav-link :href="route('shopping-list')" :active="route().current('shopping-list')">
-                                    Shopping List
-                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -230,6 +226,13 @@
                     <slot name="header"></slot>
                 </div>
             </header>
+
+            <div v-if="$page.props.flash.success" class="bg-green-500 text-white rounded font-bold mx-6 my-2 p-1">
+                {{ $page.props.flash.success }}
+            </div>
+            <div v-if="$page.props.flash.warning" class="bg-red-500 text-white rounded font-bold mx-6 my-2 p-1">
+                {{ $page.props.flash.warning }}
+            </div>
 
             <!-- Page Content -->
             <main>

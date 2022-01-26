@@ -19,9 +19,16 @@
                 </div>
                 <div class="text-sm text-black-300">{{ course.description }}</div>
                 <a :href="route('courses.show', course.id)"
-                   class="bg-indigo-500 text-white px-2 py-1 text-sm mt-3 inline-block rounded hover:bg-indigo-700">
-                    Show Episode
+                   class="float-left bg-indigo-500 text-white px-2 py-1 text-sm mt-3 inline-block rounded hover:bg-indigo-700">
+                    Show Episodes
                 </a>
+                <form v-if="course.user_id === $page.props.user.id" class="float-right" @submit.prevent="deleteCourse">
+                    <input type="hidden" id="courseId" :value="course.id">
+                    <button type="submit" class="bg-red-500 text-white px-2 py-1 text-sm mt-3 inline-block rounded hover:bg-red-700">
+                        Delete Course
+                    </button>
+                </form>
+                <div class="clear-both"></div>
             </div>
         </div>
     </app-layout>
@@ -46,6 +53,17 @@ export default {
         return {
             coursesList: this.courses
         }
+    },
+
+    methods: {
+        async deleteCourse() {
+              const response = await axios.delete('/courses/');
+              if(response.data.status === 'success') {
+
+              } else {
+
+              }
+        },
     },
 
     // Called synchronously immediately after the instance has been initialized, before data observation and event/watcher setup.

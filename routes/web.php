@@ -32,7 +32,7 @@ Route::View('/notification', 'Notification.index')->name("notification");
 Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::resource('/courses', CourseController::class)->only( 'show');
+    Route::resource('/courses', CourseController::class)->only( 'show', 'store', 'destroy');
     Route::post('/toggleProgress', [CourseController::class, 'toggleProgress']);
 
     Route::get('/dashboard', function () {

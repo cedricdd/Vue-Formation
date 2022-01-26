@@ -1,6 +1,7 @@
 <template>
     <div class="w-full bg-gray-200 rounded-full mt-6">
-        <div class="bg-green-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full" :style="`width: ${percentage}%`"> {{ percentage }}%</div>
+        <div class="bg-green-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full transition-width duration-500"
+             :style="`width: ${percentage}%`"> {{ percentage }}%</div>
     </div>
 </template>
 

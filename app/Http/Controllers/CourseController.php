@@ -13,6 +13,13 @@ use Inertia\Inertia;
 
 class CourseController extends Controller
 {
+    public function destroy(Course $course)
+    {
+        $course->delete();
+
+        return redirect()->route('courses.index');
+    }
+
     public function index(): \Inertia\Response
     {
         $participants = WatchedEpisode::select(DB::raw("COUNT(DISTINCT(user_id))"))
@@ -39,7 +46,20 @@ class CourseController extends Controller
         return Inertia::render('Courses/Show', compact('course', 'watched'));
     }
 
-    public function toggleProgress(Request $request): Collection
+    public function store(Request $request)
+    {
+        $course = Course::create($request->all() + ['user_id' => Auth::id()]);
+
+        foreach ($request->input('episodes') as $episode) {
+            $course->episodes()->save(
+                new Episode($episode)
+            );
+        }
+
+        return redirect()->route('dashboard')->with('success', 'The formation was successfully created!');
+    }
+
+    public function toggleProgress(Request $request)
     {
         //Make sure this episode exist
         $episode = Episode::find(intval($request->input('episodeId', 0)));
@@ -47,7 +67,5 @@ class CourseController extends Controller
         if ($episode != false) {
             Auth::user()->episodesWatched()->toggle($episode);
         }
-
-        return $request->user()->episodesWatched;
     }
 }
